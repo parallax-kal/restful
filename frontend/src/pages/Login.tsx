@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { FaChevronRight } from "react-icons/fa6";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
+import { instance } from "@/lib/axios";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email"),
@@ -34,8 +35,9 @@ const Login = () => {
       password: "",
     },
   });
-  const onSubmit = (values: z.infer<typeof loginSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof loginSchema>) => {
+    const response = await instance.post("/users/login", values);
+    console.log(response);
   };
   return (
     <>
@@ -78,18 +80,22 @@ const Login = () => {
             )}
           />
           <div className="flex justify-end">
-            <Button
-              type="submit"
-              className="bg-[#4880FF] gap-2 items-center"
-            >
+            <Button type="submit" className="bg-[#4880FF] gap-2 items-center">
               <span>Login</span>
               <FaChevronRight />
             </Button>
           </div>
           <Separator />
           <div className="flex sm:flex-row flex-col justify-between">
-            <div className="text-[#393D6E] text-[16px] font-medium">Don't have account?</div>
-            <Link to="/register" className="text-[#007DFA] font-semibold text-[16px]">Register acount</Link>
+            <div className="text-[#393D6E] text-[16px] font-medium">
+              Don't have account?
+            </div>
+            <Link
+              to="/register"
+              className="text-[#007DFA] font-semibold text-[16px]"
+            >
+              Register acount
+            </Link>
           </div>
         </form>
       </Form>

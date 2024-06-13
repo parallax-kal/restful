@@ -15,8 +15,12 @@ import { Button } from "@/components/ui/button";
 import { FaChevronRight } from "react-icons/fa6";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
+import { FaUserLarge } from "react-icons/fa6";
+import { BsFillPhoneFill } from "react-icons/bs";
 
 const formSchema = z.object({
+  name: z.string().min(6),
+  phone: z.string().min(10),
   email: z.string().email("Invalid email"),
   password: z
     .string()
@@ -39,7 +43,7 @@ const Register = () => {
   };
   return (
     <>
-      <div className="text-[#2F3367] font-bold text-[28px]">Login</div>
+      <div className="text-[#2F3367] font-bold text-[28px]">Sign UP</div>
       <div className="font-medium text-[16px] text-[#303468] ">
         Please fill your information below
       </div>
@@ -48,6 +52,30 @@ const Register = () => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="mt-10 space-y-7"
         >
+           <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <IconInput Icon={FaUserLarge} placeholder="Name" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+           <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <IconInput Icon={BsFillPhoneFill} placeholder="Phone" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name="email"
