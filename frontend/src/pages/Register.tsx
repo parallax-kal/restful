@@ -16,7 +16,7 @@ import { FaChevronRight } from "react-icons/fa6";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
 
-const loginSchema = z.object({
+const formSchema = z.object({
   email: z.string().email("Invalid email"),
   password: z
     .string()
@@ -26,15 +26,15 @@ const loginSchema = z.object({
     ),
 });
 
-const Login = () => {
-  const form = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
+const Register = () => {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
-  const onSubmit = (values: z.infer<typeof loginSchema>) => {
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.log(values);
   };
   return (
@@ -46,7 +46,7 @@ const Login = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="lg:mt-10 mt-6 space-y-7"
+          className="mt-10 space-y-7"
         >
           <FormField
             control={form.control}
@@ -82,14 +82,14 @@ const Login = () => {
               type="submit"
               className="bg-[#4880FF] gap-2 items-center"
             >
-              <span>Login</span>
+              <span>Register</span>
               <FaChevronRight />
             </Button>
           </div>
           <Separator />
-          <div className="flex sm:flex-row flex-col justify-between">
-            <div className="text-[#393D6E] text-[16px] font-medium">Don't have account?</div>
-            <Link to="/register" className="text-[#007DFA] font-semibold text-[16px]">Register acount</Link>
+          <div className="flex sm:flex-row flex-col gap-2 justify-between">
+            <div className="text-[#393D6E] text-[16px] font-medium">Already have an account?</div>
+            <Link to="/login" className="text-[#007DFA] font-semibold text-[16px]">Login to your account</Link>
           </div>
         </form>
       </Form>
@@ -97,4 +97,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
