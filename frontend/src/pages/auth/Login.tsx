@@ -16,6 +16,7 @@ import { FaChevronRight } from "react-icons/fa6";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
 import { instance } from "@/lib/axios";
+import toast from "react-hot-toast";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email"),
@@ -36,8 +37,17 @@ const Login = () => {
     },
   });
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
-    const response = await instance.post("/users/login", values);
-    console.log(response);
+    toast.promise(instance.post("/users/login", values), {
+      loading: "Loading...",
+      success: (data) => {
+        localStorage.setItem("token", data.data.token);
+        window.location.href = "/";
+        return "Login successful";
+      },
+      error: (error) => {
+        return error.response?.data?.error ?? "Error logging in";
+      },
+    });
   };
   return (
     <>

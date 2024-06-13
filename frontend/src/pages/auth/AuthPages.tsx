@@ -1,7 +1,7 @@
 import loginCover from "@/assets/images/login-cover.png";
 import Logo from "@/components/common/logo";
-import Login from "@/pages/Login";
-import Register from "@/pages/Register";
+import Login from "@/pages/auth/Login";
+import Register from "@/pages/auth/Register";
 import { Route, Routes } from "react-router-dom";
 
 const AuthLayout = () => {
