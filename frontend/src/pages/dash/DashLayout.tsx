@@ -30,7 +30,7 @@ const DashLayout = () => {
   ) : (
     <div className="bg-[#F5F6FA]">
       <Navbar />
-      <div className="h-screen px-10  pb-4 pt-8">
+      <div className="h-screen lg:px-10 px-5  pb-4 pt-8">
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/employees" element={<Employees />} />
