@@ -26,7 +26,6 @@ export const validateEmployeeAdd = (data: any) => {
     email: Joi.string().email(),
     phone: Joi.string().min(10).max(10).required(),
     nationalId: Joi.string().min(16).max(16).required(),
-    password: Joi.string().min(6).max(100).required(),
   });
 
   return schema.validate(data);

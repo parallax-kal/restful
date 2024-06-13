@@ -44,7 +44,7 @@ export const getLaptops = async (req: Request, res: Response) => {
     let total = await prisma.laptop.count();
     return res
       .status(200)
-      .json({ page: Number(page), limit: Number(limit), data: laptops, total });
+      .json({ page: Number(page), limit: Number(limit), laptops, total });
   } catch (error) {
     return res.status(500).json({ error: "Error", stackTrace: error });
   }

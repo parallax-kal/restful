@@ -21,7 +21,9 @@
       "description": "Laptops management"
     }
   ],
-  "schemes": ["http"],
+  "schemes": [
+    "http"
+  ],
   "securityDefinitions": {
     "Bearer": {
       "type": "apiKey",
@@ -31,12 +33,18 @@
       "scheme": "bearer"
     }
   },
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/users/login": {
       "post": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -73,7 +81,9 @@
     },
     "/users/register": {
       "post": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -113,7 +123,9 @@
     },
     "/users/me": {
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -122,9 +134,24 @@
         }
       }
     },
+    "/users/totals": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "",
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/employees/": {
       "get": {
-        "tags": ["Employees"],
+        "tags": [
+          "Employees"
+        ],
         "description": "",
         "parameters": [
           {
@@ -148,7 +175,9 @@
         }
       },
       "post": {
-        "tags": ["Employees"],
+        "tags": [
+          "Employees"
+        ],
         "description": "",
         "parameters": [
           {
@@ -188,7 +217,9 @@
     },
     "/employees/{id}": {
       "get": {
-        "tags": ["Employees"],
+        "tags": [
+          "Employees"
+        ],
         "description": "",
         "parameters": [
           {
@@ -208,7 +239,9 @@
         }
       },
       "put": {
-        "tags": ["Employees"],
+        "tags": [
+          "Employees"
+        ],
         "description": "",
         "parameters": [
           {
@@ -252,7 +285,9 @@
         }
       },
       "delete": {
-        "tags": ["Employees"],
+        "tags": [
+          "Employees"
+        ],
         "description": "",
         "parameters": [
           {
@@ -272,9 +307,21 @@
         }
       }
     },
+    "/employees/{{where{id:parseInt(id)}});returnres.status(200).json({message:Employeedeletedsuccessfully});}catch(error){returnres.status(500).json({error:Error}": {
+      "delete": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/laptops/": {
       "get": {
-        "tags": ["Laptops"],
+        "tags": [
+          "Laptops"
+        ],
         "description": "",
         "parameters": [
           {
@@ -298,7 +345,9 @@
         }
       },
       "post": {
-        "tags": ["Laptops"],
+        "tags": [
+          "Laptops"
+        ],
         "description": "",
         "parameters": [
           {
@@ -341,7 +390,9 @@
     },
     "/laptops/{id}": {
       "get": {
-        "tags": ["Laptops"],
+        "tags": [
+          "Laptops"
+        ],
         "description": "",
         "parameters": [
           {
@@ -361,7 +412,9 @@
         }
       },
       "put": {
-        "tags": ["Laptops"],
+        "tags": [
+          "Laptops"
+        ],
         "description": "",
         "parameters": [
           {
@@ -408,7 +461,9 @@
         }
       },
       "delete": {
-        "tags": ["Laptops"],
+        "tags": [
+          "Laptops"
+        ],
         "description": "",
         "parameters": [
           {
@@ -430,7 +485,9 @@
     },
     "/laptops/employee/{id}": {
       "get": {
-        "tags": ["Laptops"],
+        "tags": [
+          "Laptops"
+        ],
         "description": "",
         "parameters": [
           {
@@ -446,6 +503,16 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/laptops/{{where{id:parseInt(id)}});returnres.status(200).json({message:Laptopdeletedsuccessfully});}catch(error){returnres.status(500).json({error:Error}": {
+      "delete": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
           }
         }
       }

@@ -37,7 +37,12 @@ export const register = async (req: Request, res: Response) => {
   try {
     const { fullname, email, phone, password } = req.body;
 
-    const { error } = validateUserRegister({ fullname, email, phone, password });
+    const { error } = validateUserRegister({
+      fullname,
+      email,
+      phone,
+      password,
+    });
     if (error) return res.status(400).json({ error: error.details[0].message });
 
     let hashedPassword = await bcrypt.hash(password, 10);
@@ -60,4 +65,18 @@ export const register = async (req: Request, res: Response) => {
 
 export const me = async (req: Request, res: Response) => {
   return res.status(200).json({ user: (req as any).user });
+};
+
+export const getTotals = async (req: Request, res: Response) => {
+  try {
+    const totalEmployees = await prisma.employee.count();
+    const totalLaptops = await prisma.laptop.count();
+    const totalUsers = await prisma.user.count();
+    return res.status(200).json({ totalEmployees, totalLaptops, totalUsers });
+  } catch (error) {
+    return res.status(500).json({
+      error: "Error",
+      stackTrace: error,
+    });
+  }
 };

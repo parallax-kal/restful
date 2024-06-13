@@ -11,8 +11,8 @@ export const addEmployee = async (req: Request, res: Response) => {
       phone,
       nationalId,
     });
-    if (error) return res.status(400).json({ error: error.details[0].message });
 
+    if (error) return res.status(400).json({ error: error.details[0].message });
     await prisma.employee.create({
       data: {
         fullname,
@@ -25,6 +25,7 @@ export const addEmployee = async (req: Request, res: Response) => {
 
     return res.status(201).json({ message: "Employee added successfully" });
   } catch (error) {
+    console.log(error)
     return res.status(500).json({ error: "Error", stackTrace: error });
   }
 };
@@ -45,14 +46,12 @@ export const getEmployees = async (req: Request, res: Response) => {
       },
     });
     let total = await prisma.employee.count();
-    return res
-      .status(200)
-      .json({
-        page: Number(page),
-        limit: Number(limit),
-        data: employees,
-        total,
-      });
+    return res.status(200).json({
+      page: Number(page),
+      limit: Number(limit),
+      employees,
+      total,
+    });
   } catch (error) {
     return res.status(500).json({ error: "Error", stackTrace: error });
   }

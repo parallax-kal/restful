@@ -9,12 +9,35 @@ import {
   DropdownMenuItem,
 } from "../ui/dropdown-menu";
 import { IoMdLogOut } from "react-icons/io";
+import { Link } from "react-router-dom";
+import Logo from "./logo";
+import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const user = useRecoilValue(userAtom);
+  const navs = ["employees", "laptops"];
+
+  const pathname = window.location.pathname.split("/")[1];
+
   return (
-    <div className="sticky w-full flex justify-between bg-white px-5 py-3">
-      <div></div>
+    <div className="sticky w-full z-50 top-0 flex justify-between bg-white px-10 py-5">
+      <div className="flex gap-20 items-center">
+        <Logo className="!text-[20px] !font-extrabold" black />
+        <div className="gap-8 flex items-center">
+          {navs.map((nav) => (
+            <Link
+            key={nav}
+              to={`/${nav.toLowerCase()}`}
+              className={cn(
+                "capitalize font-semibold text-[20px] duration-200 transition-all",
+                pathname === nav.toLowerCase() ? "text-[#4880FF]" : "text-black"
+              )}
+            >
+              {nav}
+            </Link>
+          ))}
+        </div>
+      </div>
       <div className="flex items-center gap-2">
         <div className="rounded-full p-2 bg-[#EDEDED]">
           <FaUser color="#8280FF" />
@@ -30,10 +53,10 @@ const Navbar = () => {
                 localStorage.removeItem("token");
                 window.location.href = "/auth/login";
               }}
-              className="cursor-pointer"
+              className="cursor-pointer flex gap-2"
             >
               <IoMdLogOut />
-              Logout
+              <span>Logout</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

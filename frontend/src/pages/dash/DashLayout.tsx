@@ -6,18 +6,15 @@ import { useRecoilState } from "recoil";
 import { userAtom } from "@/lib/recoil";
 import Loader from "@/components/common/loader";
 import Navbar from "@/components/common/navbar";
-import Sidebar from "@/components/common/sidebar";
+import Employees from "./employees";
+import Laptops from "./laptops";
 
 const DashLayout = () => {
   const navigate = useNavigate();
   const [user, setUser] = useRecoilState(userAtom);
   useEffect(() => {
     instance
-      .get("/users/me", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
+      .get("/users/me")
       .then(({ data }) => {
         setUser(data.user);
       })
@@ -29,14 +26,15 @@ const DashLayout = () => {
   }, []);
 
   return !user ? (
-    <Loader />
+    <Loader className="h-screen w-full" />
   ) : (
     <div className="bg-[#F5F6FA]">
-      <Sidebar />
-      <div className="pl-[12rem] h-screen">
-        <Navbar />
+      <Navbar />
+      <div className="h-screen px-10  pb-4 pt-8">
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/employees" element={<Employees />} />
+          <Route path="/laptops" element={<Laptops />} />
         </Routes>
       </div>
     </div>
