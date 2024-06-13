@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
@@ -33,7 +33,10 @@ model Employee {
 
 model Laptop {
     id         Int       @id @default(autoincrement())
-    email      String    @unique @db.VarChar(255)
+    name       String    @db.VarChar(255)
+    brand      String    @db.VarChar(255)
+    model      String    @db.VarChar(255)
+    price      Float
     employee   Employee? @relation(fields: [employeeId], references: [id])
     employeeId Int
     createdAt  DateTime  @default(now())

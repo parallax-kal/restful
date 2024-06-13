@@ -13,15 +13,30 @@ const doc = {
   produces: ["application/json"],
   tags: [
     {
-      name: "User",
-      description: "Authentication and user management",
+      name: "Users",
+      description: "Authentication and users management",
+    },
+    {
+      name: "Employees",
+      description: "Employees management",
+    },
+    {
+      name: "Laptops",
+      description: "Laptops management",
+    },
+  ],
+  security: [
+    {
+      Bearer: [],
     },
   ],
   securityDefinitions: {
-    bearerAuth: {
+    Bearer: {
       type: "apiKey",
       name: "Authorization",
       in: "header",
+      bearerFormat: "JWT",
+      scheme: "bearer",
     },
   },
   definitions: {},
@@ -30,6 +45,4 @@ const doc = {
 const outputFile = "./doc/swagger.json";
 const routes = ["../routers/index.ts"];
 
-swaggerAutogen()(outputFile, routes, doc).then(async () => {
-    await import("../server");
-})
+swaggerAutogen()(outputFile, routes, doc)
