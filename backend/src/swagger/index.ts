@@ -45,4 +45,6 @@ const doc = {
 const outputFile = "./doc/swagger.json";
 const routes = ["../routers/index.ts"];
 
-swaggerAutogen()(outputFile, routes, doc)
+swaggerAutogen()(outputFile, routes, doc).then(async() => {
+  await import("../server")
+});

@@ -45,7 +45,14 @@ export const getEmployees = async (req: Request, res: Response) => {
       },
     });
     let total = await prisma.employee.count();
-    return res.status(200).json({ page, limit, data: employees, total });
+    return res
+      .status(200)
+      .json({
+        page: Number(page),
+        limit: Number(limit),
+        data: employees,
+        total,
+      });
   } catch (error) {
     return res.status(500).json({ error: "Error", stackTrace: error });
   }

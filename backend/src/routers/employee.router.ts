@@ -10,10 +10,10 @@ import {
 
 const employeeRouter = Router();
 
-employeeRouter.get("/", authMiddleware, getEmployees);
-employeeRouter.get("/:id", authMiddleware, getEmployee);
-employeeRouter.post("/", authMiddleware, addEmployee);
-employeeRouter.put("/:id", authMiddleware, updateEmployee);
-employeeRouter.delete("/:id", authMiddleware, deleteEmployee);
+employeeRouter.get("/", getEmployees);
+employeeRouter.get("/:id", getEmployee);
+employeeRouter.post("/", addEmployee);
+employeeRouter.put("/:id", updateEmployee);
+employeeRouter.delete("/:id", deleteEmployee);
 
 export default employeeRouter;

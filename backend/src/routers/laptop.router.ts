@@ -1,5 +1,4 @@
 import { Router } from "express";
-import authMiddleware from "../middlewares/auth.middleware";
 import {
   addLaptop,
   getLaptop,
@@ -11,11 +10,11 @@ import {
 
 const laptopRouter = Router();
 
-laptopRouter.get("/", authMiddleware, getLaptops);
-laptopRouter.get("/:id", authMiddleware, getLaptop);
-laptopRouter.post("/", authMiddleware, addLaptop);
-laptopRouter.put("/:id", authMiddleware, updateLaptop);
-laptopRouter.delete("/:id", authMiddleware, deleteLaptop);
-laptopRouter.get("/employee/:id", authMiddleware, getLaptopsByEmployee);
+laptopRouter.get("/", getLaptops);
+laptopRouter.get("/:id", getLaptop);
+laptopRouter.post("/", addLaptop);
+laptopRouter.put("/:id", updateLaptop);
+laptopRouter.delete("/:id", deleteLaptop);
+laptopRouter.get("/employee/:id", getLaptopsByEmployee);
 
 export default laptopRouter;
